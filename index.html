@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Herramientas Matemáticas</title>
+   
+  </head>
+  <style>
+    body {
+    width: 50%;
+    background-color: rgb(255, 255, 255);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  div {
+    background-color: rgb(138, 206, 211);
+    padding: 5px;
+    margin-bottom: 20px;
+  }
+
+  div.result {
+    background-color: rgb(248, 248, 247);
+    padding: 10px;
+  }
+
+  @media (max-width: 768px) {
+    body {
+      width: 80%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    body {
+      width: 95%;
+    }
+
+    .container {
+      padding: 2px;
+    }
+
+    .header h1, .section h2, .section label, .section h4 {
+      font-size: 0.5em;
+    }
+
+    .section input, .section button {
+      font-size: 0.5em;
+    }
+  }
+  </style>
+
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Herramientas Matemáticas</h1>
+      </div>
+
+      <div class="section">
+        <h2>Hallar Múltiplos de un Número</h2>
+        <label for="numero">Ingrese un número</label>
+        <input type="number" id="numero" onkeydown="if(event.keyCode==13) hallarMultiplos()" />
+        <button onclick="hallarMultiplos()">Verificar</button>
+        <h4>Los múltiplos son:</h4>
+        <div id="resultado" class="result"></div>
+      </div>
+
+      <div class="section">
+        <h2>Verificar si un Número es Primo</h2>
+        <label for="nprimo">Ingrese un número</label>
+        <input type="number" id="nprimo" onkeydown="if(event.keyCode==13) verificarPrimo()" />
+        <button onclick="verificarPrimo()">Verificar</button>
+        <h4>Resultado:</h4>
+        <div id="rprimo" class="result"></div>
+      </div>
+
+      <div class="section">
+        <h2>Calcular los N Primeros Números Primos</h2>
+        <label for="nPrimo">Ingrese un número</label>
+        <input type="number" id="nPrimo" onkeydown="if(event.keyCode==13) hallarNPrimos()" />
+        <button onclick="hallarNPrimos()">Verificar</button>
+        <h4>Los primeros números primos son:</h4>
+        <div id="rPrimo" class="result"></div>
+      </div>
+    </div>
+
+    <script>
+      //MULTIPLOS DE UN NUMERO
+      function hallarMultiplos() {
+        let numeroInput = document.getElementById("numero").value;
+        let resultadoDiv = document.getElementById("resultado");
+
+        resultadoDiv.innerHTML = ""; // Limpia el contenido del div
+        let arreglo = [];
+
+        for (let i = 1; i <= numeroInput; i++) {
+          if (numeroInput % i == 0) {
+            arreglo.push(i);
+          }
+        }
+        resultadoDiv.innerHTML = arreglo.join(" - "); // Convierte el arreglo a una cadena separada 
+      }
+
+      //VERIFICAR SI UN NUMERO ES PRIMO
+      function verificarPrimo() {
+        let np = document.getElementById("nprimo").value;
+        let rp = document.getElementById("rprimo");
+
+        rp.innerHTML = "";
+        y = 0;
+        for (let i = 1; i <= np; i++) {
+          if (np % i == 0) {
+            y++;
+          }
+        }
+        if (y == 2) {
+          a = "Es primo";
+        } else {
+          a = "No es primo";
+        }
+
+        rp.innerHTML = a;
+      }
+
+      //N NUMEROS PRIMOS
+      function hallarNPrimos() {
+        let n = document.getElementById("nPrimo").value;
+        let r = document.getElementById("rPrimo");
+
+        r.innerHTML = ""; // Limpia el contenido del div
+        let aPrimos = [];
+
+        for (let i = 2; i <= n; i++) {
+          y = 0;
+          for (let j = 2; j <= i; j++) {
+            if (i % j == 0) {
+              y = y + 1;
+            }
+          }
+          if (y == 1) {
+            aPrimos.push(i);
+          }
+        }
+        r.innerHTML = aPrimos.join(" - "); // Convierte el arreglo a una cadena separada 
+      }
+    </script>
+  </body>
+</html>
